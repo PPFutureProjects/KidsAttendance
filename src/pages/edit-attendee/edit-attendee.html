@@ -1,0 +1,45 @@
+<!--
+  Generated template for the EditAttendeePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Edit {{kid?.name}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-item>
+    <ion-label>Name</ion-label>
+    <ion-input [(ngModel)]="kid.name" placeholder="kid's name"> </ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Age</ion-label>
+    <ion-input  [(ngModel)]="kid.age" type="number" placeholder="8"> </ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Birthday</ion-label>
+    <!--<ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="myDate"></ion-datetime>-->
+    <ion-datetime  [(ngModel)]="kid.birthday" displayFormat="MM/DD/YYYY"></ion-datetime>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Guardians</ion-label>
+    <ion-input [(ngModel)]="kid.guardians" placeholder="parents"></ion-input>
+  </ion-item>
+
+  <!--for debugging-->
+  {{kid | json}}
+
+  <button ion-button block clear (click)="saveKid(kid)">Save</button>
+  <button ion-button block clear color="danger" (click)="removeKid(kid)">DELETE!</button>
+
+</ion-content>

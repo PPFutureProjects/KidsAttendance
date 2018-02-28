@@ -5,26 +5,32 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
+import {AngularFireModule} from "angularfire2";
+import { FIREBASE_CONFIG } from './firebase.credentials'
+import { AngularFireDatabaseModule } from 'angularfire2/database'
+import {KidAttendanceService} from "../services/kid-attendance/kid-attendance.service";
+import {ToastService} from "../services/toast/toast.service";
 
 @NgModule({
   declarations: [
-    MyApp,
-    HomePage
+    MyApp
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(FIREBASE_CONFIG),
+    AngularFireDatabaseModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,
-    HomePage
+    MyApp
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    KidAttendanceService,
+    ToastService
   ]
 })
 export class AppModule {}
