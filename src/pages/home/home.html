@@ -1,26 +1,5 @@
-<ion-header>
-  <ion-navbar color="primary">
-    <ion-title>
-      Kids Club Attendance
-    </ion-title>
-
-
-    <ion-buttons end>
-      <button navPush="AddAttendeePage" ion-button>
-        <ion-icon name="add"></ion-icon>
-      </button>
-    </ion-buttons>
-  </ion-navbar>
-</ion-header>
-
-<ion-content padding>
-  <ion-list>
-    <ion-list-header>
-      Kids
-    </ion-list-header>
-    <ion-item *ngFor="let kid of attendanceList$ | async"
-              detail-push navPush="EditAttendeePage" [navParams]="{kid: kid}">
-      {{kid.name}}
-    </ion-item>
-  </ion-list>
-</ion-content>
+tail<ion-tabs>
+  <ion-tab [root]="checkInRoot" tabTitle="Check in" tabIcon="information-circle"></ion-tab>
+  <ion-tab [root]="checkOutRoot" tabTitle="Check out" tabIcon="information-circle"></ion-tab>
+  <ion-tab [root]="overviewRoot" tabTitle="Overview" tabIcon="information-circle"></ion-tab>
+</ion-tabs>

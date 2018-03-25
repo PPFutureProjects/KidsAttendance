@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {Kid} from "../../models/kid/kid.model";
-import {KidAttendanceService} from "../../services/kid-attendance/kid-attendance.service";
+import {KidRosterService} from "../../services/kid-roster/kid-roster.service";
 import {ToastService} from "../../services/toast/toast.service";
 
 /**
@@ -23,7 +23,7 @@ export class EditAttendeePage {
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              private attendance: KidAttendanceService,
+              private roster: KidRosterService,
               private toast: ToastService) {
   }
 
@@ -33,7 +33,7 @@ export class EditAttendeePage {
   }
 
   saveKid(kid: Kid) {
-    this.attendance.saveKid(kid).then( () => {
+    this.roster.saveKid(kid).then( () => {
       this.navCtrl.setRoot('HomePage');
       this.toast.show(`${kid.name} saved!`);
     });
@@ -41,7 +41,7 @@ export class EditAttendeePage {
 
 
   removeKid(kid: Kid) {
-    return this.attendance.removeKid(kid).then( () =>
+    return this.roster.removeKid(kid).then( () =>
     {
       this.navCtrl.setRoot('HomePage');
       this.toast.show( `Annihilated ${kid.name}!`)

@@ -1,30 +1,37 @@
 import {Injectable} from "@angular/core";
 import {AngularFireDatabase} from "angularfire2/database";
 import {Kid} from "../../models/kid/kid.model";
+import {Attendance} from "../../models/attendance/attendance.model";
+import {DateTime} from "ionic-angular";
 
 @Injectable()
 
 export class KidAttendanceService {
 
-  private kidAttendanceListRef = this.db.list<Kid>('kid-attendance');
+  private kidAttendanceDB = this.db.list<Attendance>('kid-attendance');
 
-  constructor(private db: AngularFireDatabase) {
+    constructor(private db: AngularFireDatabase) {
 
   }
 
   getKidAttendanceList() {
-    return this.kidAttendanceListRef;
+    return this.kidAttendanceDB;
   }
 
-  addKid(kid: Kid) {
-    return this.kidAttendanceListRef.push(kid);
+  checkIn(kid: Kid) {
+
+    const checkin: Attendance = {
+      kid_key: kid.key,
+      attended: new Date(),
+      check_in: Date.now(),
+      check_out: null
+    };
+    return this.kidAttendanceDB.push(checkin);
   }
 
-  saveKid(kid: Kid) {
-    return this.kidAttendanceListRef.update(kid.key, kid);
+  checkOut(attd: Attendance) {
+    attd.check_out = Date.now();
+    return this.kidAttendanceDB.update(attd.key, attd);
   }
 
-  removeKid(kid: Kid) {
-    return this.kidAttendanceListRef.remove(kid.key);
-  }
 }

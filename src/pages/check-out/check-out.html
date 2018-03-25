@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-navbar color="danger">
+    <ion-title>
+      Kids Club Check-Out
+    </ion-title>
+
+    <ion-buttons end>
+      <button navPush="AddAttendeePage" ion-button>
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <!--TODO - make this an ion-item-sliding -->
+    <ion-item *ngFor="let kid of inKids$ | async"
+              detail-push (click)="checkOut(kid)">
+              <!--detail-push navPush="EditAttendeePage" [navParams]="{kid: kid}">-->
+      {{kid.name}} - (in @ {{kid.attd.check_in | date:'HH:mm'}})
+      <!--<ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="kid.attd.check_in"></ion-datetime>-->
+    </ion-item>
+  </ion-list>
+</ion-content>

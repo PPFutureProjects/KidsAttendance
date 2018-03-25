@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-navbar color="secondary">
+    <ion-title>
+      Kids Club Check-In
+    </ion-title>
+
+
+    <ion-buttons end>
+      <button navPush="AddAttendeePage" ion-button>
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <!--TODO - make this an ion-item-sliding -->
+    <ion-item *ngFor="let kid of outKids$ | async"
+              detail-push (click)="checkIn(kid)">
+      {{kid.name}}
+    </ion-item>
+  </ion-list>
+
+</ion-content>

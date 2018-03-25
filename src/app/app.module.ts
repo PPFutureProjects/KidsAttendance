@@ -8,8 +8,10 @@ import { MyApp } from './app.component';
 import {AngularFireModule} from "angularfire2";
 import { FIREBASE_CONFIG } from './firebase.credentials'
 import { AngularFireDatabaseModule } from 'angularfire2/database'
-import {KidAttendanceService} from "../services/kid-attendance/kid-attendance.service";
+import {KidRosterService} from "../services/kid-roster/kid-roster.service";
 import {ToastService} from "../services/toast/toast.service";
+import {KidAttendanceService} from "../services/kid-attendance/kid-attendance.service";
+import {KidCombinedService} from "../services/kid-combined/kid-combined.service";
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import {ToastService} from "../services/toast/toast.service";
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+    KidRosterService,
     KidAttendanceService,
+    KidCombinedService,
     ToastService
   ]
 })

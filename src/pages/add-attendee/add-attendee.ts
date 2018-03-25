@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {Kid} from "../../models/kid/kid.model";
-import {KidAttendanceService} from "../../services/kid-attendance/kid-attendance.service";
+import {KidRosterService} from "../../services/kid-roster/kid-roster.service";
 import {ToastService} from "../../services/toast/toast.service";
 
 /**
@@ -26,7 +26,7 @@ export class AddAttendeePage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    private attendance: KidAttendanceService,
+    private roster: KidRosterService,
     private toast: ToastService) {
   }
 
@@ -35,7 +35,7 @@ export class AddAttendeePage {
   }
 
   addKid(kid: Kid) {
-    this.attendance.addKid(kid).then(ref => {
+    this.roster.addKid(kid).then(ref => {
       console.log(ref.key);
       this.navCtrl.setRoot('HomePage', {key:ref.key});
       this.toast.show(`${kid.name} saved!`);
