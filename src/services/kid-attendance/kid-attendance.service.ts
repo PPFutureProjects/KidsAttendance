@@ -8,7 +8,8 @@ import {DateTime} from "ionic-angular";
 
 export class KidAttendanceService {
 
-  private kidAttendanceDB = this.db.list<Attendance>('kid-attendance');
+  //Get the ones that have an attendance (checked-in) record but with no no check_out value (they're still in)
+  private kidAttendanceDB = this.db.list<Attendance>('kid-attendance', ref => ref.orderByChild('check_out').equalTo(null));
 
     constructor(private db: AngularFireDatabase) {
 
